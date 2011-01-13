@@ -63,8 +63,8 @@ module Heroku::Command
 
       def heroku_mongo_uri
         config = heroku.config_vars(app)
-        url    = config['MONGO_URL'] || config['MONGOHQ_URL'] || "#{mongo-url}"
-        error("Could not find the MONGO_URL for #{app}") if url.blank?
+        url    = config['MONGO_URL'] || config['MONGOHQ_URL']
+        error("Could not find the MONGO_URL for #{app}") unless url
         make_uri(url)
       end
       
